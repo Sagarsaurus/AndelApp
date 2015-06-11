@@ -3,3 +3,5 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
+  input(type="button" onclick="voiceRecognition()", value="Click me!")
+  textarea(id="results", cols="80", rows="5")
