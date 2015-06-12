@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="10a27515-af3f-42b0-a446-b4fed538a586" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/util.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/runConfigurations/bin_www.xml" afterPath="$PROJECT_DIR$/.idea/runConfigurations/bin_www.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/index.jade" afterPath="$PROJECT_DIR$/views/index.jade" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/layout.jade" afterPath="$PROJECT_DIR$/views/layout.jade" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/util.js" afterPath="$PROJECT_DIR$/public/javascripts/util.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="AndelApp.iws" />
@@ -113,8 +110,8 @@
       <file leaf-file-name="util.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/javascripts/util.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.411157" vertical-offset="206" max-vertical-offset="780">
-              <caret line="29" column="97" selection-start-line="29" selection-start-column="97" selection-end-line="29" selection-end-column="97" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="780">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
                 <element signature="n#!!doc;n#parseCommand#0" expanded="false" />
               </folding>
@@ -364,7 +361,13 @@
       <option name="project" value="LOCAL" />
       <updated>1434065509721</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Started google api integration.  Next step is to be able to grab flight data.  Then we begin optimization.">
+      <created>1434144480816</created>
+      <option name="number" value="00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1434144480816</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -411,7 +414,8 @@
     </option>
     <MESSAGE value="Integrated speech recognition, unfortunately it only works with chrome.  Need to find solution for safari and firefox at the very least." />
     <MESSAGE value="Removed continuous speech detection, it screws up on mobile." />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed continuous speech detection, it screws up on mobile." />
+    <MESSAGE value="Started google api integration.  Next step is to be able to grab flight data.  Then we begin optimization." />
+    <option name="LAST_COMMIT_MESSAGE" value="Started google api integration.  Next step is to be able to grab flight data.  Then we begin optimization." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -492,8 +496,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/javascripts/util.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.411157" vertical-offset="206" max-vertical-offset="780">
-          <caret line="29" column="97" selection-start-line="29" selection-start-column="97" selection-end-line="29" selection-end-column="97" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="780">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc;n#parseCommand#0" expanded="false" />
           </folding>
