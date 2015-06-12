@@ -3,5 +3,7 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
-  input.ui.red.inverted.button(type="button" onclick="voiceRecognition()", value="Click me!")
-  textarea(id="textarea", cols="80", rows="5")
+  textarea(id="command", cols="80", rows="1")
+  br
+  input.ui.red.inverted.button(type="button" onclick="parseCommand()", value="Enter Command")
+
