@@ -66,8 +66,7 @@ function success(result) {
     //currently the distance is hardcoded but it must be changed in the future to whatever the user wants
     var apiString = 'https://zilyo.p.mashape.com/search?latitude='+lat+'&longitude='+long+"&maxdistance=10";
     xml.onreadystatechange=function() {
-        if (xml.readyState==4 && xml.status==200)
-        {
+        if (xml.readyState==4 && xml.status==200) {
             console.log(JSON.parse(xml.responseText));
         }
     };
@@ -75,4 +74,9 @@ function success(result) {
     xml.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xml.setRequestHeader("X-Mashape-Key", "QKQrYHI0vlmshS4Kvv4dVZHL937Hp1cwkCPjsnLESO3qr8oj9C");
     xml.send();
+}
+
+//use developer.flightstats.com for API, 20,000 lifetime requests for free, have to make them count
+function loadFlights() {
+
 }
