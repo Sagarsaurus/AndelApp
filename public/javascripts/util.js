@@ -47,3 +47,16 @@ function parseCommand() {
         alert("Destination is: "+destination);
     }
 }
+
+//https://www.mashape.com/zilyo/zilyo
+//have to learn to use this API, it's brilliant.
+function loadHousing(lat, long) {
+    var xml = new XMLHttpRequest();
+    var apiString = 'https://zilyo.p.mashape.com/search?latitude='+lat+'&longitude='+long;
+    xml.open("GET", apiString, false); //AJAX Set request
+    xml.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xml.setRequestHeader("X-Mashape-Key", "QKQrYHI0vlmshS4Kvv4dVZHL937Hp1cwkCPjsnLESO3qr8oj9C");
+    xml.send();
+    var response = JSON.parse(xml.responseText);
+    console.log(response);
+}
