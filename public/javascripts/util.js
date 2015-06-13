@@ -50,13 +50,29 @@ function parseCommand() {
 
 //https://www.mashape.com/zilyo/zilyo
 //have to learn to use this API, it's brilliant.
-function loadHousing(lat, long) {
+function loadHousing() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(success);
+    } else {
+        alert("Geolocation is not supported by this browser.");
+    }
+}
+
+function success(result) {
+    var lat = parseFloat(result['coords'].latitude);
+    var long = parseFloat(result['coords'].longitude);
+    console.log(lat);
     var xml = new XMLHttpRequest();
-    var apiString = 'https://zilyo.p.mashape.com/search?latitude='+lat+'&longitude='+long;
-    xml.open("GET", apiString, false); //AJAX Set request
+    //currently the distance is hardcoded but it must be changed in the future to whatever the user wants
+    var apiString = 'https://zilyo.p.mashape.com/search?latitude='+lat+'&longitude='+long+"&maxdistance=10";
+    xml.onreadystatechange=function() {
+        if (xml.readyState==4 && xml.status==200)
+        {
+            console.log(JSON.parse(xml.responseText));
+        }
+    };
+    xml.open("GET", apiString, true); //AJAX Set request
     xml.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xml.setRequestHeader("X-Mashape-Key", "QKQrYHI0vlmshS4Kvv4dVZHL937Hp1cwkCPjsnLESO3qr8oj9C");
     xml.send();
-    var response = JSON.parse(xml.responseText);
-    console.log(response);
 }
