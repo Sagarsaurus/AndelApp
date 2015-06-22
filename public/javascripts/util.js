@@ -22,23 +22,28 @@ function parseCommand() {
         }
         source = source.trim();
         var directionsService = new google.maps.DirectionsService();
-        var request = {
-            origin:source,
-            destination:destination,
-            travelMode: google.maps.TravelMode.DRIVING
-            //need to add different travel types, transit, driving, biking and walking are handled via google
-            //what we need to do is add flights and work on optimizing.  That'd be pretty insane.
-        };
+        var travelModes = [google.maps.TravelMode.DRIVING, google.maps.TravelMode.TRANSIT, google.maps.TravelMode.BICYCLING, google.maps.TravelMode.WALKING];
+        for(var i = 0; i < travelModes.length; i++) {
+            var request = {
+                origin:source,
+                destination:destination,
+                travelMode: travelModes[i]
+                //need to add different travel types, transit, driving, biking and walking are handled via google
+                //what we need to do is add flights and work on optimizing.  That'd be pretty insane.
+            };
 
-        directionsService.route(request, function(response, status) {
-            if (status == google.maps.DirectionsStatus.OK) {
-                //directionsDisplay.setDirections(response);
-                console.log(response);
-            }
-            else {
-                console.log(status);
-            }
-        });
+            directionsService.route(request, function(response, status) {
+                //console.log(request);
+                if (status == google.maps.DirectionsStatus.OK) {
+                    //directionsDisplay.setDirections(response);
+                    console.log(response);
+                }
+                else {
+                    console.log(status);
+                }
+            });
+        }
+
     }
     else {
         var destination = command.split(" to ");
