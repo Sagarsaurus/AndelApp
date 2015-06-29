@@ -91,10 +91,12 @@ function parseCommand() {
 
 function finished(driving, transit, biking, walking) {
     if(driving != null && transit != null && biking != null && walking != null) {
-        console.log(driving);
-        console.log(transit);
-        console.log(biking);
-        console.log(walking);
+        //console.log(driving);
+        //console.log(transit);
+        //console.log(biking);
+        if(walking.status=='OK' && (parseFloat(walking.routes[0].legs[0].duration.value)/86400 < 15) ) {
+            alert("It's under 15 minutes away!  You should walk!");
+        }
     }
 }
 
