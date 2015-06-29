@@ -2,6 +2,10 @@
  * Created by sagarsaurus on 6/12/15.
  */
 function parseCommand() {
+    var driving;
+    var transit;
+    var biking;
+    var walking;
     var command = document.getElementById('command').value;
     if(!command.includes(" to ")) {
         alert("You must specify a destination in order to plan a trip!");
@@ -22,34 +26,75 @@ function parseCommand() {
         }
         source = source.trim();
         var directionsService = new google.maps.DirectionsService();
-        var travelModes = [google.maps.TravelMode.DRIVING, google.maps.TravelMode.TRANSIT, google.maps.TravelMode.BICYCLING, google.maps.TravelMode.WALKING];
-        for(var i = 0; i < travelModes.length; i++) {
-            var request = {
-                origin:source,
-                destination:destination,
-                travelMode: travelModes[i]
-                //need to add different travel types, transit, driving, biking and walking are handled via google
-                //what we need to do is add flights and work on optimizing.  That'd be pretty insane.
-            };
 
-            directionsService.route(request, function(response, status) {
-                //console.log(request);
-                if (status == google.maps.DirectionsStatus.OK) {
-                    //directionsDisplay.setDirections(response);
-                    console.log(response);
-                }
-                else {
-                    console.log(status);
-                }
-            });
-        }
+        var drivingRequest = {
+            origin:source,
+            destination:destination,
+            travelMode: google.maps.TravelMode.DRIVING
+            //need to add different travel types, transit, driving, biking and walking are handled via google
+            //what we need to do is add flights and work on optimizing.  That'd be pretty insane.
+        };
+
+        directionsService.route(drivingRequest, function(response, status) {
+            driving = response;
+            finished(driving, transit, biking, walking);
+        });
+
+        var transitRequest = {
+            origin:source,
+            destination:destination,
+            travelMode: google.maps.TravelMode.TRANSIT
+            //need to add different travel types, transit, driving, biking and walking are handled via google
+            //what we need to do is add flights and work on optimizing.  That'd be pretty insane.
+        };
+
+        directionsService.route(transitRequest, function(response, status) {
+            transit = response;
+            finished(driving, transit, biking, walking);
+        });
+
+        var bikingRequest = {
+            origin:source,
+            destination:destination,
+            travelMode: google.maps.TravelMode.BICYCLING
+            //need to add different travel types, transit, driving, biking and walking are handled via google
+            //what we need to do is add flights and work on optimizing.  That'd be pretty insane.
+        };
+
+        directionsService.route(bikingRequest, function(response, status) {
+            biking = response;
+            finished(driving, transit, biking, walking);
+        });
+
+        var walkingRequest = {
+            origin:source,
+            destination:destination,
+            travelMode: google.maps.TravelMode.WALKING
+            //need to add different travel types, transit, driving, biking and walking are handled via google
+            //what we need to do is add flights and work on optimizing.  That'd be pretty insane.
+        };
+
+        directionsService.route(walkingRequest, function(response, status) {
+            walking = response;
+            finished(driving, transit, biking, walking);
+        });
 
     }
+
     else {
         var destination = command.split(" to ");
         destination = destination[1];
         destination = destination.trim();
         alert("Destination is: "+destination);
+    }
+}
+
+function finished(driving, transit, biking, walking) {
+    if(driving != null && transit != null && biking != null && walking != null) {
+        console.log(driving);
+        console.log(transit);
+        console.log(biking);
+        console.log(walking);
     }
 }
 

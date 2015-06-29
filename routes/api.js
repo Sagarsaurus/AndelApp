@@ -6,7 +6,7 @@
 //the shortest path will be processed on the client side and displayed on a google map.  Simple as that
 var express = require('express');
 var router = express.Router();
-var Graph = require('node-dijkstras');
+var Graph = require('node-dijkstra');
 var g = new Graph();
 
 var api = {
