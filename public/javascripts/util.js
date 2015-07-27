@@ -6,24 +6,12 @@ function parseCommand() {
     var transit;
     var biking;
     var walking;
-    var command = document.getElementById('command').value;
-    if(!command.includes(" to ")) {
+    var destination = document.getElementById('destination').value;
+    if(destination.length==0) {
         alert("You must specify a destination in order to plan a trip!");
     }
-    else if(command.includes(" from ")) {
-        var pieceOne = command.split("from");
-        var souce = "";
-        var destination = "";
-        if(pieceOne[1].includes(" to ")) {
-            var pieceTwo = pieceOne[1].split(" to ");
-            source = pieceTwo[0];
-            destination = pieceTwo[1];
-        }
-        else {
-            source = pieceOne[1];
-            var pieceTwo = pieceOne[0].split(" to ");
-            destination = pieceTwo[1];
-        }
+    else if(document.getElementById('source').value.length!=0) {
+        var source = document.getElementById('source').value;
         source = source.trim();
         var directionsService = new google.maps.DirectionsService();
 
@@ -82,18 +70,17 @@ function parseCommand() {
     }
 
     else {
-        var destination = command.split(" to ");
-        destination = destination[1];
         destination = destination.trim();
+        alert("We have to gather your location in order to plan your trip!");
         alert("Destination is: "+destination);
     }
 }
 
 function finished(driving, transit, biking, walking) {
     if(driving != null && transit != null && biking != null && walking != null) {
-        //console.log(driving);
-        //console.log(transit);
-        //console.log(biking);
+        console.log(driving);
+        console.log(transit);
+        console.log(biking);
         if(walking.status=='OK' && (parseFloat(walking.routes[0].legs[0].duration.value)/60 < 15) ) {
             alert("It's under 15 minutes away!  You should walk!");
         }
@@ -131,4 +118,44 @@ function success(result) {
 //use developer.flightstats.com for API, 20,000 lifetime requests for free, have to make them count
 function loadFlights() {
 
+}
+
+function updateSource() {
+    var urlString = 'http://autocomplete.wunderground.com/aq?query='+document.getElementById('source').value+'&cb=sourceCallback';
+    $.ajax({
+        type: 'GET',
+        url : urlString,
+        dataType : "jsonp"
+    });
+}
+
+function sourceCallback(result) {
+    var options = [];
+    for(var i = 0; i < result['RESULTS'].length; i++) {
+        options.push(result['RESULTS'][i].name);
+    }
+
+    $( "#source" ).autocomplete({
+        source: options
+    });
+}
+
+function updateDestination() {
+    var urlString = 'http://autocomplete.wunderground.com/aq?query='+document.getElementById('destination').value+'&cb=destinationCallback';
+    $.ajax({
+        type: 'GET',
+        url : urlString,
+        dataType : "jsonp"
+    });
+}
+
+function destinationCallback(result) {
+    var options = [];
+    for(var i = 0; i < result['RESULTS'].length; i++) {
+        options.push(result['RESULTS'][i].name);
+    }
+
+    $( "#destination" ).autocomplete({
+        source: options
+    });
 }

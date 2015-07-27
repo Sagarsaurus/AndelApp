@@ -3,10 +3,20 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
-  textarea(id="command", cols="80", rows="1")
+  div.input-group(style="width: 40%")
+    span.input-group-addon(id="basic-addon1")
+      |From
+    input.form-control(type="text", placeholder="Enter Source Location", aria-describedby="basic-addon1", id="source", onkeypress="updateSource()")
   br
-  input.ui.red.inverted.button(type="button", onclick="parseCommand()", value="Enter Command")
+  div.input-group(style="width: 40%")
+    span.input-group-addon(id="basic-addon2")
+      | Destination
+    input.form-control(type="text", placeholder="Enter Destination Location", aria-describedby="basic-addon2", id="destination", onkeypress="updateDestination()")
+  br
+  button.btn.btn-success(type="button", onclick="parseCommand()")
+    |Enter Command
   br
   br
-  input.ui.blue.inverted.button(type="button", onclick="loadHousing()", value="Load Housing")
+  button.btn.btn-danger(type="button", onclick="loadHousing()")
+    |Load Housing
 
